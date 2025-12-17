@@ -21,7 +21,7 @@ app.use((req, res, next) => {
     }
 });
 console.log('Attempting MongoDB connection...');
-mdb.connect('mongodb+srv://cys:cys@cluster0.2neclii.mongodb.net//MERN').then(()=>{
+mdb.connect('mongodb+srv://cys:cys@cluster0.2neclii.mongodb.net/MERN').then(()=>{
     console.log("Mongodb connection successfull")
 }).catch((err)=>{
     console.log("Mongodb connection unsuccessful",err)
