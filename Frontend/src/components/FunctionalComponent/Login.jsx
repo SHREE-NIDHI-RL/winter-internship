@@ -14,8 +14,10 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post("https://winter-internship-qd2b.onrender.com/login", formData);
-      setMessage("Login successful!");
+      setMessage("Login successful! Welcome back!");
       console.log(response.data);
+      // You can add navigation to dashboard here if needed
+      // setTimeout(() => navigate('/dashboard'), 2000);
     } catch (error) {
       setMessage(error.response?.data?.Message || "Login failed");
     }

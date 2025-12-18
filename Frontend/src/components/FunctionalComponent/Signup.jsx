@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
 function Signup() {
   const [formData, setFormData] = useState({ email: "", username: "", password: "" });
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,8 +15,12 @@ function Signup() {
     e.preventDefault();
     try {
       const response = await axios.post("https://winter-internship-qd2b.onrender.com/signup", formData);
-      setMessage("Signup successful!");
+      setMessage("Signup successful! Redirecting to login...");
       console.log(response.data);
+      // Navigate to login page after 2 seconds
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (error) {
       setMessage(error.response?.data?.Message || "Signup failed");
     }
