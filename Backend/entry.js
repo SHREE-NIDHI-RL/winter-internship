@@ -40,6 +40,21 @@ app.get('/static',(req,res)=>{
    res.sendFile('D:\TRAINING\React\Backend\index.html')
     })
 
+app.get('/db-status', (req, res) => {
+    const dbState = mdb.connection.readyState;
+    const states = {
+        0: 'disconnected',
+        1: 'connected',
+        2: 'connecting',
+        3: 'disconnecting'
+    };
+    res.json({
+        "database": states[dbState] || 'unknown',
+        "status": dbState === 1 ? 'OK' : 'ERROR',
+        "connection": dbState === 1
+    });
+});
+
 app.get('/signup',(req, res)=>{
     res.send("Signup page - Use POST method to submit signup data")
 })
